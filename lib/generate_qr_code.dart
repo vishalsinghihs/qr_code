@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const GenerateQrCode(),
+    );
+  }
+}
+
 class GenerateQrCode extends StatefulWidget {
   const GenerateQrCode({super.key});
 
@@ -9,51 +25,70 @@ class GenerateQrCode extends StatefulWidget {
 }
 
 class _GenerateQrCodeState extends State<GenerateQrCode> {
+  final TextEditingController urlController = TextEditingController();
 
-  TextEditingController urlController = TextEditingController();
+  @override
+  void dispose() {
+    urlController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Generate QR Code'), backgroundColor: Colors.amber,),
+      appBar: AppBar(
+        title: const Text('Generate QR Code'),
+        backgroundColor: Colors.amber,
+        centerTitle: true,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if(urlController.text.isNotEmpty)...[
-               QrImageView(data: urlController.text, size: 200,),
-                const SizedBox(height: 10,),
+
+              // ✅ QR CODE
+              if (urlController.text.isNotEmpty)
                 Container(
-                  padding: const EdgeInsets.only(left: 8, right:8),
-
-
+                  padding: const EdgeInsets.all(12),
                   color: Colors.white,
-                  child: TextField(controller: urlController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    hintText: 'Enter data to generate QR code',
-                ),
-                ),
-                ),
-                const SizedBox(height: 10,),
-                ElevatedButton(onPressed: () {
-                  setState(() {
-                    
-                  });
-                }, child: const Text('Generate QR Code')),
-                const SizedBox(height: 20),
-
-                // ✅ Only show QR after input
-                if (urlController.text.isNotEmpty)
-                  QrImageView(
+                  child: QrImageView(
                     data: urlController.text,
-                    size: 200,
+                    size: 220,
                     backgroundColor: Colors.white,
                   ),
-              ]
+                ),
+
+              const SizedBox(height: 20),
+
+              // ✅ INPUT FIELD
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: TextField(
+                  controller: urlController,
+                  onChanged: (value) {
+                    setState(() {}); // auto refresh QR
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Enter text or URL',
+                    hintText: 'https://example.com',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // ✅ BUTTON
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {}); // manual refresh
+                },
+                child: const Text('Generate QR Code'),
+              ),
             ],
           ),
-        )
+        ),
       ),
     );
   }

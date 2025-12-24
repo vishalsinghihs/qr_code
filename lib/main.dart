@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('qr code scanner and generator'),backgroundColor: Colors.amber,),
+      appBar: AppBar(title: const Text('QR Code Scanner & Generator'),backgroundColor: const Color.fromARGB(255, 211, 204, 58),),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,13 +40,13 @@ class _HomePageState extends State<HomePage> {
             setState(() {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ScanQrCode()));
             });
-           }, child: Text('scan qr code')),
+           }, child: const Text('Scan QR Code')),
             const SizedBox(height: 40,), 
             ElevatedButton(onPressed: () {
               setState(() {
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GenerateQrCode()));
               });
-            }, child: Text('generate qr code')),
+            }, child: const Text('Generate QR Code')),
           ],
         ),
       ),
