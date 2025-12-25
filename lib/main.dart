@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            // 🔳 App Title
+         
             const Text(
               "QR Code App",
               style: TextStyle(
@@ -58,7 +58,7 @@ class HomePage extends StatelessWidget {
 
             const SizedBox(height: 40),
 
-            // 🔘 Scan Button
+        
             _buildCardButton(
               context,
               title: "Scan QR Code",
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
 
             const SizedBox(height: 25),
 
-            // 🔘 Generate Button
+           
             _buildCardButton(
               context,
               title: "Generate QR Code",
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // 🔧 Reusable Card Button
+
   Widget _buildCardButton(
     BuildContext context, {
     required String title,

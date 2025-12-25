@@ -47,7 +47,7 @@ class _GenerateQrCodeState extends State<GenerateQrCode> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              // ✅ QR CODE
+              
               if (urlController.text.isNotEmpty)
                 Container(
                   padding: const EdgeInsets.all(12),
@@ -61,13 +61,13 @@ class _GenerateQrCodeState extends State<GenerateQrCode> {
 
               const SizedBox(height: 20),
 
-              // ✅ INPUT FIELD
+              
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
                   controller: urlController,
                   onChanged: (value) {
-                    setState(() {}); // auto refresh QR
+                    setState(() {}); 
                   },
                   decoration: const InputDecoration(
                     labelText: 'Enter text or URL',
@@ -79,10 +79,10 @@ class _GenerateQrCodeState extends State<GenerateQrCode> {
 
               const SizedBox(height: 20),
 
-              // ✅ BUTTON
+              
               ElevatedButton(
                 onPressed: () {
-                  setState(() {}); // manual refresh
+                  setState(() {}); 
                 },
                 child: const Text('Generate QR Code'),
               ),
